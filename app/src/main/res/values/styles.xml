@@ -3,6 +3,5 @@
     <style name="ErrorButton">
         <item name="android:background">@drawable/error_button_background</item>
         <item name="android:layout_height">56dp</item>
-
     </style>
 </resources>

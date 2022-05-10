@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import br.edu.utfpr.nossafaunaiguacu.databinding.ActivitySplashScreenBinding;
 import dagger.android.AndroidInjection;
 
+// TODO add UTFPR icons in screen
 @SuppressLint("CustomSplashScreen")
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -26,14 +27,16 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-
-        binding = ActivitySplashScreenBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
+        setupLayout();
         setupListeners();
         setupSplashScreen();
         setupViewModel();
         fetchApplicationData();
+    }
+
+    private void setupLayout() {
+        binding = ActivitySplashScreenBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
     }
 
     private void setupListeners() {
@@ -42,7 +45,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     private void setupSplashScreen() {
         SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
-        splashScreen.setKeepVisibleCondition(() -> viewModel.shouldKeepSplashScreenVisible());
+        splashScreen.setKeepOnScreenCondition(() -> viewModel.shouldKeepSplashScreenVisible());
     }
 
     private void setupViewModel() {
