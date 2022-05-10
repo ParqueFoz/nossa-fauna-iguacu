@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">nossa-fauna-iguacu</string>
+    <string name="try_again">Tente novamente</string>
+    <string name="splash_screen_error_title">Ops, algo de errado aconteceu!</string>
+    <string name="splash_screen_error_subtitle">Não foi possível obter os dados do servidor. Por favor, tente novamente</string>
 </resources>

@@ -2,6 +2,7 @@ package br.edu.utfpr.nossafaunaiguacu.features.splash.presentation;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import javax.inject.Inject;
 
+import br.edu.utfpr.nossafaunaiguacu.databinding.ActivitySplashScreenBinding;
 import dagger.android.AndroidInjection;
 
 @SuppressLint("CustomSplashScreen")
@@ -18,19 +20,29 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Inject
     SplashScreenViewModelFactory viewModelFactory;
     private SplashScreenViewModel viewModel;
+    private ActivitySplashScreenBinding binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
+
+        binding = ActivitySplashScreenBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        setupListeners();
         setupSplashScreen();
         setupViewModel();
         fetchApplicationData();
     }
 
+    private void setupListeners() {
+        binding.errorButton.setOnClickListener(view -> fetchApplicationData());
+    }
+
     private void setupSplashScreen() {
         SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
-        splashScreen.setKeepVisibleCondition(() -> viewModel.isKeepSplashScreenVisible());
+        splashScreen.setKeepVisibleCondition(() -> viewModel.shouldKeepSplashScreenVisible());
     }
 
     private void setupViewModel() {
@@ -54,7 +66,8 @@ public class SplashScreenActivity extends AppCompatActivity {
     }
 
     private void handleFetchShowErrorLayout(Boolean shouldShowFetchErrorLayout) {
-        // TODO("implement")
+        int viewVisibility = shouldShowFetchErrorLayout ? View.VISIBLE : View.GONE;
+        binding.errorGroup.setVisibility(viewVisibility);
     }
 
     private void fetchApplicationData() {

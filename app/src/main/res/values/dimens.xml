@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="splash_screen_error_title_text_size">26sp</dimen>
+    <dimen name="splash_screen_error_subtitle_text_size">18sp</dimen>
+    <dimen name="splash_screen_error_icon_size">96dp</dimen>
+</resources>

@@ -32,7 +32,7 @@ public class SplashScreenViewModel extends ViewModel {
         _showFetchErrorLiveData.setValue(false);
     }
 
-    public boolean isKeepSplashScreenVisible() {
+    public boolean shouldKeepSplashScreenVisible() {
         Boolean isFetchErrorVisible = _showFetchErrorLiveData.getValue();
         return isFetchErrorVisible == null || !isFetchErrorVisible;
     }
