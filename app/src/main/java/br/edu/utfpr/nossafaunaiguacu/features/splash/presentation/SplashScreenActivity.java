@@ -1,22 +1,26 @@
 package br.edu.utfpr.nossafaunaiguacu.features.splash.presentation;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import javax.inject.Inject;
 
 import br.edu.utfpr.nossafaunaiguacu.databinding.ActivitySplashScreenBinding;
+import br.edu.utfpr.nossafaunaiguacu.features.onboard.presentation.OnBoardActivity;
 import dagger.android.AndroidInjection;
 
 // TODO add UTFPR icons in screen
 @SuppressLint("CustomSplashScreen")
-public class SplashScreenActivity extends AppCompatActivity {
+public class SplashScreenActivity extends FragmentActivity {
 
     @Inject
     SplashScreenViewModelFactory viewModelFactory;
@@ -32,6 +36,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         setupSplashScreen();
         setupViewModel();
         fetchApplicationData();
+
+        new Handler().postDelayed(() -> {
+            runOnUiThread(() -> startActivity(new Intent(this, OnBoardActivity.class)));
+        }, 2000L);
     }
 
     private void setupLayout() {

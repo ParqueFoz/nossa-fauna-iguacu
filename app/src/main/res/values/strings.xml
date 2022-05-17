@@ -3,4 +3,11 @@
     <string name="try_again">Tente novamente</string>
     <string name="splash_screen_error_title">Ops, algo de errado aconteceu!</string>
     <string name="splash_screen_error_subtitle">Não foi possível obter os dados do servidor. Por favor, tente novamente</string>
+    <string name="on_board_skip">Pular</string>
+    <string name="on_board_next">PRÓXIMO</string>
+    <string name="on_board_title">Nossa Fauna!\nIguaçu</string>
+    <string name="on_board_explore">Explorar!</string>
+    <string name="on_board_subtitle_1">Conheça da melhor forma o Parque Nacional do Iguaçu com o nosso aplicativo interativo!</string>
+    <string name="on_board_subtitle_2">Basta encontrar as diversas placas espalhadas pelo parque lendo os Códigos QR</string>
+    <string name="on_board_subtitle_3">As informações serão apresentadas nas páginas de categorias, Aproveite e Divirta-se!</string>
 </resources>
