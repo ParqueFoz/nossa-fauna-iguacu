@@ -15,6 +15,7 @@
             android:name=".features.splash.presentation.SplashScreenActivity"
             android:exported="true"
             android:theme="@style/Theme.Splash"
+            android:screenOrientation="portrait"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +23,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".features.onboard.presentation.OnBoardActivity" />
+        <activity
+            android:name=".features.onboard.presentation.OnBoardActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".features.category.presentation.CategoryActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 
