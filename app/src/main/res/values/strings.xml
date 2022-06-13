@@ -10,4 +10,6 @@
     <string name="on_board_subtitle_1">Conheça da melhor forma o Parque Nacional do Iguaçu com o nosso aplicativo interativo!</string>
     <string name="on_board_subtitle_2">Basta encontrar as diversas placas espalhadas pelo parque lendo os Códigos QR</string>
     <string name="on_board_subtitle_3">As informações serão apresentadas nas páginas de categorias, Aproveite e Divirta-se!</string>
+    <string name="category_header">Selecione uma Categoria:</string>
+    <string name="scan_qr_code_button">ESCANEAR QR CODE</string>
 </resources>

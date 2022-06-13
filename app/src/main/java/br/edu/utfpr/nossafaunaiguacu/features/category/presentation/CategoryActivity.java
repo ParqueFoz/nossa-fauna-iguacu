@@ -19,6 +19,7 @@ public class CategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityCategoryBinding.inflate(getLayoutInflater());
         viewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
+        setContentView(binding.getRoot());
         setupRecyclerView();
         setupQrCodeButton();
     }
