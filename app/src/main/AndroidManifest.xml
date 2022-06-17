@@ -12,7 +12,7 @@
         android:theme="@style/Theme.App">
 
         <activity
-            android:name=".features.splash.presentation.SplashScreenActivity"
+            android:name=".features.splash.SplashScreenActivity"
             android:exported="true"
             android:theme="@style/Theme.Splash"
             android:screenOrientation="portrait"
@@ -24,11 +24,11 @@
         </activity>
 
         <activity
-            android:name=".features.onboard.presentation.OnBoardActivity"
+            android:name=".features.onboard.OnBoardActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".features.category.presentation.CategoryActivity"
+            android:name=".features.home.HomeActivity"
             android:screenOrientation="portrait" />
 
     </application>

@@ -1,4 +1,4 @@
-package br.edu.utfpr.nossafaunaiguacu.features.splash.presentation;
+package br.edu.utfpr.nossafaunaiguacu.features.splash;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -15,8 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import javax.inject.Inject;
 
 import br.edu.utfpr.nossafaunaiguacu.databinding.ActivitySplashScreenBinding;
-import br.edu.utfpr.nossafaunaiguacu.features.category.presentation.CategoryActivity;
-import br.edu.utfpr.nossafaunaiguacu.features.onboard.presentation.OnBoardActivity;
+import br.edu.utfpr.nossafaunaiguacu.features.home.HomeActivity;
 import dagger.android.AndroidInjection;
 
 // TODO add UTFPR icons in screen
@@ -39,7 +37,7 @@ public class SplashScreenActivity extends FragmentActivity {
         fetchApplicationData();
 
         new Handler().postDelayed(() -> {
-            runOnUiThread(() -> startActivity(new Intent(this, CategoryActivity.class)));
+            runOnUiThread(() -> startActivity(new Intent(this, HomeActivity.class)));
         }, 2000L);
     }
 

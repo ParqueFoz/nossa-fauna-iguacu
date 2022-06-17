@@ -1,4 +1,4 @@
-package br.edu.utfpr.nossafaunaiguacu.features.splash.presentation;
+package br.edu.utfpr.nossafaunaiguacu.features.splash;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -1,4 +1,4 @@
-package br.edu.utfpr.nossafaunaiguacu.features.onboard.presentation;
+package br.edu.utfpr.nossafaunaiguacu.features.onboard;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

@@ -1,4 +1,4 @@
-package br.edu.utfpr.nossafaunaiguacu.features.category.presentation;
+package br.edu.utfpr.nossafaunaiguacu.features.home.category;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -9,16 +9,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import br.edu.utfpr.nossafaunaiguacu.R;
+import br.edu.utfpr.nossafaunaiguacu.data.model.CategoryModel;
 import br.edu.utfpr.nossafaunaiguacu.databinding.ItemCategoryBinding;
 import br.edu.utfpr.nossafaunaiguacu.databinding.ItemCategoryHeaderBinding;
-import br.edu.utfpr.nossafaunaiguacu.features.category.data.CategoryModel;
 
 public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final List<CategoryModel> categories;
+    private final OnSelectCategoryListener listener;
 
-    public CategoryAdapter(List<CategoryModel> categories) {
+    public CategoryAdapter(List<CategoryModel> categories, OnSelectCategoryListener listener) {
         this.categories = categories;
+        this.listener = listener;
     }
 
     @Override
@@ -34,7 +36,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (viewType == R.layout.item_category_header) {
             return new HeaderViewHolder(ItemCategoryHeaderBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
         } else {
-            return new CategoryViewHolder(ItemCategoryBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+            return new CategoryViewHolder(ItemCategoryBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false), listener);
         }
     }
 
@@ -66,10 +68,12 @@ class HeaderViewHolder extends RecyclerView.ViewHolder {
 class CategoryViewHolder extends RecyclerView.ViewHolder {
 
     private final ItemCategoryBinding binding;
+    private final OnSelectCategoryListener listener;
 
-    public CategoryViewHolder(ItemCategoryBinding binding) {
+    public CategoryViewHolder(ItemCategoryBinding binding, OnSelectCategoryListener listener) {
         super(binding.getRoot());
         this.binding = binding;
+        this.listener = listener;
     }
 
     public void bind(CategoryModel model) {
@@ -78,14 +82,14 @@ class CategoryViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void setupViews(CategoryModel model) {
-        // TODO set image | Should it be URL or Bitmap?
+        // TODO set image
         binding.title.setText(model.getName());
         binding.animalBg.setClipToOutline(true);
     }
 
     private void setupListener(CategoryModel model) {
         binding.getRoot().setOnClickListener(view -> {
-            // TODO open next activity
+            listener.onCategorySelected(model.getId());
         });
     }
 }

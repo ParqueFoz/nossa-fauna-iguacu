@@ -1,4 +1,4 @@
-package br.edu.utfpr.nossafaunaiguacu.features.onboard.presentation;
+package br.edu.utfpr.nossafaunaiguacu.features.onboard;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
