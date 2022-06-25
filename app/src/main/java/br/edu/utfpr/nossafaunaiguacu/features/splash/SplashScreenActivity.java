@@ -18,7 +18,6 @@ import br.edu.utfpr.nossafaunaiguacu.features.home.HomeActivity;
 import br.edu.utfpr.nossafaunaiguacu.features.onboard.OnBoardActivity;
 import dagger.android.AndroidInjection;
 
-// TODO add UTFPR icons in screen
 @SuppressLint("CustomSplashScreen")
 public class SplashScreenActivity extends FragmentActivity {
 

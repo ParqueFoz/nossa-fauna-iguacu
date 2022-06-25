@@ -30,4 +30,14 @@ public class LocalRepository {
                 .putBoolean("FAVORITE_" + id, favorite)
                 .commit();
     }
+
+    public static Boolean isKnown(Integer id) {
+        return sharedPreferences.getBoolean("KNOWN_" + id, false);
+    }
+
+    public static void discoveredAnimal(Integer id) {
+        sharedPreferences.edit()
+                .putBoolean("KNOWN_" + id, true)
+                .commit();
+    }
 }

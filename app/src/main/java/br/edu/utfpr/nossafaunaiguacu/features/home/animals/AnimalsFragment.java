@@ -18,10 +18,12 @@ import br.edu.utfpr.nossafaunaiguacu.features.home.animal.AnimalActivity;
 public class AnimalsFragment extends Fragment {
 
     private static final String IS_FAVORITE = "IS_FAVORITE";
+    private static final String CATEGORY_ID = "CATEGORY_ID";
 
     private AnimalsViewModel viewModel;
     private FragmentAnimalsBinding binding;
     private Boolean isFavorite;
+    private Integer categoryId;
 
     @Nullable
     @Override
@@ -32,6 +34,7 @@ public class AnimalsFragment extends Fragment {
     ) {
         binding = FragmentAnimalsBinding.inflate(inflater, container, false);
         isFavorite = getArguments().getBoolean(IS_FAVORITE, false);
+        categoryId = getArguments().getInt(CATEGORY_ID, 1);
         return binding.getRoot();
     }
 
@@ -57,13 +60,13 @@ public class AnimalsFragment extends Fragment {
     }
 
     private void getAnimals() {
-        viewModel.getAnimals(isFavorite);
+        viewModel.getAnimals(categoryId, isFavorite);
     }
 
-    public static AnimalsFragment newInstance(Boolean isFavorite) {
+    public static AnimalsFragment newInstance(Integer categoryId, Boolean isFavorite) {
         Bundle args = new Bundle();
+        args.putInt(CATEGORY_ID, categoryId);
         args.putBoolean(IS_FAVORITE, isFavorite);
-
         AnimalsFragment fragment = new AnimalsFragment();
         fragment.setArguments(args);
         return fragment;

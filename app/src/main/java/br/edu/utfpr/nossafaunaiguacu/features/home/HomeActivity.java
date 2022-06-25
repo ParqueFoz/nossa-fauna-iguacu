@@ -32,7 +32,7 @@ public class HomeActivity extends AppCompatActivity {
         binding.bottomNav.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.favs: {
-                    switchFragment(AnimalsFragment.newInstance(true));
+                    switchFragment(AnimalsFragment.newInstance(0, true));
                     return true;
                 }
                 case R.id.home: {
@@ -54,7 +54,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private OnSelectCategoryListener getSelectedCategoryListener() {
         return id -> {
-            switchFragment(AnimalsFragment.newInstance(false));
+            switchFragment(AnimalsFragment.newInstance(id, false));
             binding.bottomNav.setSelected(false);
         };
     }

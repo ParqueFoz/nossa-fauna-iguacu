@@ -61,6 +61,12 @@ class AnimalViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(AnimalModel model) {
+        if (!LocalRepository.isKnown(model.getId())) {
+            binding.animalImage.setVisibility(View.GONE);
+            binding.animalName.setText("Procure o QR CODE!");
+            return;
+        }
+
         binding.getRoot().setOnClickListener(v -> {
             listener.onAnimalSelected(model);
         });

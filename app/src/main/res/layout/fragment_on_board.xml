@@ -1,62 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fgRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:alpha="0.9"
-    android:id="@+id/fgRoot"
-    xmlns:tools="http://schemas.android.com/tools"
     tools:background="@drawable/on_board_bg_1">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#99000000"/>
+        android:background="#99000000" />
 
     <ImageView
         android:id="@+id/logoIv"
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:layout_marginTop="32dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/ic_logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_logo"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/titleTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/logoIv"
-        android:text="@string/on_board_title"
-        android:textColor="@color/white"
         android:layout_marginHorizontal="16dp"
         android:gravity="center"
         android:lineSpacingExtra="8dp"
-        android:textSize="28sp" />
+        android:text="@string/on_board_title"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        app:layout_constraintTop_toBottomOf="@id/logoIv" />
 
     <TextView
         android:id="@+id/subtitleTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/titleTv"
-        android:layout_marginTop="24dp"
         android:layout_marginHorizontal="16dp"
-        android:textSize="22sp"
-        android:textColor="@color/white"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
         android:lineSpacingExtra="8dp"
-        tools:text="Conheça da melhor forma o Parque Nacional do Iguaçu com o nosso aplicativo interativo!"
-        android:gravity="center" />
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintTop_toBottomOf="@id/titleTv"
+        tools:text="Conheça da melhor forma o Parque Nacional do Iguaçu com o nosso aplicativo interativo!" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/nextButton"
         style="@style/NextButton"
         android:layout_width="match_parent"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="8dp"
         android:text="@string/on_board_next"
-        app:layout_goneMarginBottom="64dp"
-        app:layout_constraintBottom_toTopOf="@id/skipButton" />
+        app:backgroundTint="#2DC653"
+        app:layout_constraintBottom_toTopOf="@id/skipButton"
+        app:layout_goneMarginBottom="64dp" />
 
     <Button
         android:id="@+id/skipButton"

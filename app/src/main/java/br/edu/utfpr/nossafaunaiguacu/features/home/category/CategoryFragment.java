@@ -24,9 +24,6 @@ public class CategoryFragment extends Fragment {
     private CategoryViewModel viewModel;
     private OnSelectCategoryListener listener;
 
-    @Inject
-    CategoryViewModelFactory viewModelFactory;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +50,7 @@ public class CategoryFragment extends Fragment {
     }
 
     private void setupViewModel() {
-        viewModel = new ViewModelProvider(requireActivity(), viewModelFactory).get(CategoryViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(CategoryViewModel.class);
         viewModel.categories.observe(getViewLifecycleOwner(), categories -> {
             binding.categories.setAdapter(new CategoryAdapter(categories, listener));
             binding.categories.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
