@@ -1,12 +1,15 @@
 package br.edu.utfpr.nossafaunaiguacu.features.onboard;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import br.edu.utfpr.nossafaunaiguacu.data.repository.LocalRepository;
 import br.edu.utfpr.nossafaunaiguacu.databinding.ActivityOnBoardBinding;
+import br.edu.utfpr.nossafaunaiguacu.features.home.HomeActivity;
 
 public class OnBoardActivity extends AppCompatActivity {
 
@@ -34,7 +37,7 @@ public class OnBoardActivity extends AppCompatActivity {
             @Override
             public void onNext(boolean isLastPage) {
                 if (isLastPage) {
-                    finish();
+                    skipOnBoard();
                 } else {
                     ViewPager2 viewPager = binding.viewPager2;
                     viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
@@ -43,8 +46,14 @@ public class OnBoardActivity extends AppCompatActivity {
 
             @Override
             public void onSkip() {
-                finish();
+                skipOnBoard();
             }
         };
+    }
+
+    private void skipOnBoard() {
+        LocalRepository.saveNotFirstAccess();
+        startActivity(new Intent(this, HomeActivity.class));
+        finish();
     }
 }

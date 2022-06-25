@@ -15,6 +15,7 @@ import javax.inject.Inject;
 
 import br.edu.utfpr.nossafaunaiguacu.databinding.ActivitySplashScreenBinding;
 import br.edu.utfpr.nossafaunaiguacu.features.home.HomeActivity;
+import br.edu.utfpr.nossafaunaiguacu.features.onboard.OnBoardActivity;
 import dagger.android.AndroidInjection;
 
 // TODO add UTFPR icons in screen
@@ -31,13 +32,17 @@ public class SplashScreenActivity extends FragmentActivity {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setupLayout();
-        setupListeners();
-        setupSplashScreen();
         setupViewModel();
-        fetchApplicationData();
 
         new Handler().postDelayed(() -> {
-            runOnUiThread(() -> startActivity(new Intent(this, HomeActivity.class)));
+            runOnUiThread(() -> {
+                if (viewModel.isFirstAccess()) {
+                    startActivity(new Intent(this, OnBoardActivity.class));
+                } else {
+                    startActivity(new Intent(this, HomeActivity.class));
+                }
+                finish();
+            });
         }, 2000L);
     }
 
@@ -46,41 +51,7 @@ public class SplashScreenActivity extends FragmentActivity {
         setContentView(binding.getRoot());
     }
 
-    private void setupListeners() {
-        binding.errorButton.setOnClickListener(view -> fetchApplicationData());
-    }
-
-    private void setupSplashScreen() {
-        SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
-        splashScreen.setKeepOnScreenCondition(() -> viewModel.shouldKeepSplashScreenVisible());
-    }
-
     private void setupViewModel() {
-        createViewModel();
-        setupObservers();
-    }
-
-    private void createViewModel() {
         viewModel = new ViewModelProvider(this, viewModelFactory).get(SplashScreenViewModel.class);
-    }
-
-    private void setupObservers() {
-        viewModel.shouldFinishLiveData.observe(this, this::handleShouldFinish);
-        viewModel.showFetchErrorLiveData.observe(this, this::handleFetchShowErrorLayout);
-    }
-
-    private void handleShouldFinish(Boolean shouldFinish) {
-        if (shouldFinish) {
-            finish();
-        }
-    }
-
-    private void handleFetchShowErrorLayout(Boolean shouldShowFetchErrorLayout) {
-        int viewVisibility = shouldShowFetchErrorLayout ? View.VISIBLE : View.GONE;
-        binding.errorGroup.setVisibility(viewVisibility);
-    }
-
-    private void fetchApplicationData() {
-        viewModel.fetchApplicationData();
     }
 }

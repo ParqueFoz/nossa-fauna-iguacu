@@ -17,9 +17,10 @@
         tools:src="@drawable/on_board_bg_1" />
 
     <ImageView
+        android:id="@+id/backgroundImg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/category_item_rounded_corners"
+        tools:background="@drawable/category_item_rounded_corners"
         android:backgroundTint="#99000000" />
 
     <TextView

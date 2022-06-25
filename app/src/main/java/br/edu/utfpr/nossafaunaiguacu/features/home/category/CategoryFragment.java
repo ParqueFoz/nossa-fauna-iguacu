@@ -11,7 +11,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import javax.inject.Inject;
+
 import br.edu.utfpr.nossafaunaiguacu.databinding.FragmentCategoryBinding;
+import dagger.android.support.AndroidSupportInjection;
 
 public class CategoryFragment extends Fragment {
 
@@ -21,6 +24,14 @@ public class CategoryFragment extends Fragment {
     private CategoryViewModel viewModel;
     private OnSelectCategoryListener listener;
 
+    @Inject
+    CategoryViewModelFactory viewModelFactory;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
     @Nullable
     @Override
     public View onCreateView(
@@ -28,6 +39,7 @@ public class CategoryFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState
     ) {
+        AndroidSupportInjection.inject(this);
         binding = FragmentCategoryBinding.inflate(inflater, container, false);
         listener = (OnSelectCategoryListener) getArguments().getSerializable(LISTENER_KEY);
         return binding.getRoot();
@@ -41,7 +53,7 @@ public class CategoryFragment extends Fragment {
     }
 
     private void setupViewModel() {
-        viewModel = new ViewModelProvider(requireActivity()).get(CategoryViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity(), viewModelFactory).get(CategoryViewModel.class);
         viewModel.categories.observe(getViewLifecycleOwner(), categories -> {
             binding.categories.setAdapter(new CategoryAdapter(categories, listener));
             binding.categories.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));

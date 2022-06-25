@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import br.edu.utfpr.nossafaunaiguacu.databinding.FragmentAnimalsBinding;
+import br.edu.utfpr.nossafaunaiguacu.features.home.animal.AnimalActivity;
 
 public class AnimalsFragment extends Fragment {
 
@@ -44,18 +45,27 @@ public class AnimalsFragment extends Fragment {
     private void setupViewModel() {
         viewModel = new ViewModelProvider(requireActivity()).get(AnimalsViewModel.class);
         viewModel.animals.observe(getViewLifecycleOwner(), animals -> {
-            binding.recyclerView.setAdapter(new AnimalsAdapter(animals, isFavorite, getAnimalClickListener()));
+            binding.recyclerView.setAdapter(new AnimalsAdapter(animals, getAnimalClickListener()));
             binding.recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2, RecyclerView.HORIZONTAL, false));
         });
     }
 
     private OnAnimalClickListener getAnimalClickListener() {
-        return animalId -> {
-
+        return animalModel -> {
+            startActivity(AnimalActivity.newInstance(getContext(), animalModel));
         };
     }
 
     private void getAnimals() {
         viewModel.getAnimals(isFavorite);
+    }
+
+    public static AnimalsFragment newInstance(Boolean isFavorite) {
+        Bundle args = new Bundle();
+        args.putBoolean(IS_FAVORITE, isFavorite);
+
+        AnimalsFragment fragment = new AnimalsFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 }

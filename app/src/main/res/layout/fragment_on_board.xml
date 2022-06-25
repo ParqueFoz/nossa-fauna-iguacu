@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:alpha="0.9"
+    android:id="@+id/fgRoot"
     xmlns:tools="http://schemas.android.com/tools"
     tools:background="@drawable/on_board_bg_1">
 

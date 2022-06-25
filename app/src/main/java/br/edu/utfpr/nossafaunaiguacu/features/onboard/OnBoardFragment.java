@@ -64,7 +64,6 @@ public class OnBoardFragment extends Fragment {
     private void setupFirstOnBoardView() {
         setupBackground(R.drawable.on_board_bg_1);
         binding.subtitleTv.setText(R.string.on_board_subtitle_1);
-
     }
 
     private void setupSecondOnBoardView() {

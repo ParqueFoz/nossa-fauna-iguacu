@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import br.edu.utfpr.nossafaunaiguacu.R;
@@ -82,9 +84,12 @@ class CategoryViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void setupViews(CategoryModel model) {
-        // TODO set image
         binding.title.setText(model.getName());
         binding.animalBg.setClipToOutline(true);
+        Glide.with(binding.backgroundImg)
+                .load(model.getImageUrl())
+                .centerCrop()
+                .into(binding.backgroundImg);
     }
 
     private void setupListener(CategoryModel model) {

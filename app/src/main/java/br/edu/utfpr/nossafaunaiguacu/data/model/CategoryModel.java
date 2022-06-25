@@ -1,9 +1,14 @@
 package br.edu.utfpr.nossafaunaiguacu.data.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class CategoryModel {
 
+    @SerializedName("id_categoria")
     private Integer id;
+    @SerializedName("titulo")
     private String name;
+    @SerializedName("url_img")
     private String imageUrl;
 
     public Integer getId() {
