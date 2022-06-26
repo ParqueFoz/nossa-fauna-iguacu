@@ -26,13 +26,13 @@ public class CategoryViewModel extends ViewModel {
         Disposable disposable = remoteRepository.getCategories()
                 .observeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe(_categories::setValue, this::handleError);
+                .subscribe(_categories::postValue, this::handleError);
 
         disposables.add(disposable);
     }
 
     private void handleError(Throwable throwable) {
-        _categories.setValue(new ArrayList<>());
+        _categories.postValue(new ArrayList<>());
     }
 
     @Override

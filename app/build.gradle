@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "br.edu.utfpr.nossafaunaiguacu"
-        minSdk 21
+        minSdk 23
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -37,15 +37,13 @@ dependencies {
     def dagger_version = "2.41"
 
     // UI
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.6.0'
-    implementation "androidx.core:core-splashscreen:1.0.0-beta02"
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'com.google.android.material:material:1.6.1'
     implementation "androidx.viewpager2:viewpager2:1.0.0"
 
     // Dagger
     implementation "com.google.dagger:dagger:$dagger_version"
     implementation "com.google.dagger:dagger-android:$dagger_version"
-    implementation 'com.google.dagger:dagger-android-support:2.42' // if you use the support libraries
 
     annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
@@ -62,7 +60,7 @@ dependencies {
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation "com.squareup.retrofit2:adapter-rxjava2:2.4.0"
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'me.dm7.barcodescanner:zxing:1.9.13'
 

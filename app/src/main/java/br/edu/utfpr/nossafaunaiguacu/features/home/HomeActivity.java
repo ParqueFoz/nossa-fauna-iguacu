@@ -2,10 +2,11 @@ package br.edu.utfpr.nossafaunaiguacu.features.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import br.edu.utfpr.nossafaunaiguacu.R;
 import br.edu.utfpr.nossafaunaiguacu.databinding.ActivityHomeBinding;
@@ -15,7 +16,7 @@ import br.edu.utfpr.nossafaunaiguacu.features.home.category.CategoryFragment;
 import br.edu.utfpr.nossafaunaiguacu.features.home.category.OnSelectCategoryListener;
 import br.edu.utfpr.nossafaunaiguacu.features.home.location.LocationFragment;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends FragmentActivity implements OnSelectCategoryListener {
 
     private ActivityHomeBinding binding;
 
@@ -36,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
                     return true;
                 }
                 case R.id.home: {
-                    switchFragment(CategoryFragment.newInstance(getSelectedCategoryListener()));
+                    switchFragment(CategoryFragment.newInstance());
                     return true;
                 }
                 case R.id.loc: {
@@ -48,24 +49,25 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
         binding.scanQrCodeBtn.setOnClickListener(view -> {
-            startActivity(new Intent(this, QrCodeActivity.class));
+            startActivity(new Intent(HomeActivity.this, QrCodeActivity.class));
         });
     }
 
-    private OnSelectCategoryListener getSelectedCategoryListener() {
-        return id -> {
-            switchFragment(AnimalsFragment.newInstance(id, false));
-            binding.bottomNav.setSelected(false);
-        };
+    @Override
+    public void onCategorySelected(Integer id) {
+        switchFragment(AnimalsFragment.newInstance(id, false));
+        binding.bottomNav.setSelected(false);
     }
 
     private void switchFragment(Fragment fragment) {
-        if (getSupportFragmentManager().getFragments().size() > 0) {
-            getSupportFragmentManager().popBackStack();
+        if (fragment instanceof LocationFragment) {
+            binding.scanQrCodeBtn.setVisibility(View.GONE);
+        } else {
+            binding.scanQrCodeBtn.setVisibility(View.VISIBLE);
         }
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(fragment, "fragment")
+                .replace(R.id.fragmentContainer, fragment, "fragment")
                 .commit();
     }
 }

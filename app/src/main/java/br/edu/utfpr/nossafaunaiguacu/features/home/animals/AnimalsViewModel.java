@@ -40,7 +40,8 @@ public class AnimalsViewModel extends ViewModel {
                 })
                 .observeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe(_animals::setValue, error -> {
+                .subscribe(_animals::postValue, error -> {
+                    _animals.postValue(new ArrayList<>());
                 })
         );
     }

@@ -9,9 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import br.edu.utfpr.nossafaunaiguacu.R;
 import br.edu.utfpr.nossafaunaiguacu.data.model.AnimalModel;
 import br.edu.utfpr.nossafaunaiguacu.databinding.ItemAnimalHeaderBinding;
@@ -37,7 +34,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (position == 0) {
-            ((HeaderViewHolder) holder).bind(animalModel, new ArrayList<>());
+            ((HeaderViewHolder) holder).bind(animalModel);
         } else {
             ((SectionViewHolder) holder).bind(animalModel, position);
         }
@@ -72,8 +69,11 @@ class HeaderViewHolder extends RecyclerView.ViewHolder {
         this.binding = binding;
     }
 
-    public void bind(AnimalModel animalModel, List<String> images) {
-
+    public void bind(AnimalModel animalModel) {
+        Glide.with(binding.img)
+                .load(animalModel.getBackgroundImage())
+                .centerCrop()
+                .into(binding.img);
     }
 }
 

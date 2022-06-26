@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="br.edu.utfpr.nossafaunaiguacu">
 
     <uses-permission android:name="android.permission.CAMERA" />
@@ -17,9 +18,8 @@
         <activity
             android:name=".features.splash.SplashScreenActivity"
             android:exported="true"
-            android:noHistory="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Splash">
+            android:theme="@style/Theme.App">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -36,6 +36,10 @@
 
         <activity
             android:name=".features.QrCodeActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".features.home.animal.AnimalActivity"
             android:screenOrientation="portrait" />
     </application>
 

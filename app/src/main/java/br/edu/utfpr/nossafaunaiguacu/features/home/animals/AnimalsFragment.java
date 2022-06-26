@@ -33,14 +33,14 @@ public class AnimalsFragment extends Fragment {
             @Nullable Bundle savedInstanceState
     ) {
         binding = FragmentAnimalsBinding.inflate(inflater, container, false);
-        isFavorite = getArguments().getBoolean(IS_FAVORITE, false);
-        categoryId = getArguments().getInt(CATEGORY_ID, 1);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        isFavorite = getArguments().getBoolean(IS_FAVORITE, false);
+        categoryId = getArguments().getInt(CATEGORY_ID, 1);
         setupViewModel();
         getAnimals();
     }
@@ -48,6 +48,7 @@ public class AnimalsFragment extends Fragment {
     private void setupViewModel() {
         viewModel = new ViewModelProvider(requireActivity()).get(AnimalsViewModel.class);
         viewModel.animals.observe(getViewLifecycleOwner(), animals -> {
+            binding.progress.setVisibility(View.GONE);
             binding.recyclerView.setAdapter(new AnimalsAdapter(animals, getAnimalClickListener()));
             binding.recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2, RecyclerView.HORIZONTAL, false));
         });

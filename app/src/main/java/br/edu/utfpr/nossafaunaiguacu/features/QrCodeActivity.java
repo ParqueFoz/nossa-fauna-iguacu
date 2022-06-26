@@ -1,23 +1,37 @@
 package br.edu.utfpr.nossafaunaiguacu.features;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+
+import androidx.annotation.RequiresApi;
 
 import com.google.zxing.Result;
 
 import br.edu.utfpr.nossafaunaiguacu.data.repository.LocalRepository;
+import br.edu.utfpr.nossafaunaiguacu.databinding.ActivityQrCodeBinding;
 import br.edu.utfpr.nossafaunaiguacu.features.home.animal.AnimalActivity;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class QrCodeActivity extends Activity implements ZXingScannerView.ResultHandler {
+    private static final int MY_CAMERA_REQUEST_CODE = 100;
 
     private ZXingScannerView mScannerView;
+    private ActivityQrCodeBinding binding;
 
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
+        binding = ActivityQrCodeBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         mScannerView = new ZXingScannerView(this);   // Programmatically initialize the scanner view
-        setContentView(mScannerView);                // Set the scanner view as the content view
+        binding.contentFrame.addView(mScannerView);
+
+        if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_REQUEST_CODE);
+        }
     }
 
     @Override
@@ -44,6 +58,7 @@ public class QrCodeActivity extends Activity implements ZXingScannerView.ResultH
             }
             LocalRepository.discoveredAnimal(result);
             startActivity(AnimalActivity.newInstance(QrCodeActivity.this, result));
+            finish();
         });
     }
 }

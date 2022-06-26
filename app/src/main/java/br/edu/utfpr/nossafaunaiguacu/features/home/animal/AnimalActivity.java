@@ -3,11 +3,11 @@ package br.edu.utfpr.nossafaunaiguacu.features.home.animal;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,11 +43,12 @@ public class AnimalActivity extends AppCompatActivity {
                     .subscribe(a -> {
                         animalModel = a;
                         setupAnimal();
-                    }));
+                    }, throwable -> runOnUiThread(this::finish)));
         }
     }
 
     private void setupAnimal() {
+        binding.progress.setVisibility(View.GONE);
         binding.recyclerView.setAdapter(new AnimalAdapter(animalModel));
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
     }
