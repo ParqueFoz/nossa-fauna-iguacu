@@ -16,4 +16,10 @@
         android:icon="@drawable/ic_location"
         android:title="Localização"
         app:showAsAction="always" />
+
+    <item
+        android:visible="false"
+        android:title="nothing"
+        android:id="@+id/inv"
+        app:showAsAction="never"/>
 </menu>

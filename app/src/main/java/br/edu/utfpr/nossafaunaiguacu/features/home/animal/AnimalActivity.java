@@ -46,7 +46,7 @@ public class AnimalActivity extends AppCompatActivity {
                     }, throwable -> runOnUiThread(this::finish)));
         }
     }
-
+    
     private void setupAnimal() {
         binding.progress.setVisibility(View.GONE);
         binding.recyclerView.setAdapter(new AnimalAdapter(animalModel));

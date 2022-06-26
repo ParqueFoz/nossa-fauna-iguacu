@@ -2,6 +2,7 @@ package br.edu.utfpr.nossafaunaiguacu.features.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -33,7 +34,7 @@ public class HomeActivity extends FragmentActivity implements OnSelectCategoryLi
         binding.bottomNav.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.favs: {
-                    switchFragment(AnimalsFragment.newInstance(0, true));
+                    switchFragment(AnimalsFragment.newInstance(-1, true));
                     return true;
                 }
                 case R.id.home: {
@@ -45,7 +46,7 @@ public class HomeActivity extends FragmentActivity implements OnSelectCategoryLi
                     return true;
                 }
                 default:
-                    return false;
+                    return true;
             }
         });
         binding.scanQrCodeBtn.setOnClickListener(view -> {
@@ -56,7 +57,7 @@ public class HomeActivity extends FragmentActivity implements OnSelectCategoryLi
     @Override
     public void onCategorySelected(Integer id) {
         switchFragment(AnimalsFragment.newInstance(id, false));
-        binding.bottomNav.setSelected(false);
+        binding.bottomNav.setSelectedItemId(R.id.inv);
     }
 
     private void switchFragment(Fragment fragment) {

@@ -20,6 +20,9 @@ public class RemoteRepository {
     }
 
     public Single<List<AnimalModel>> getAnimals(Integer categoryId) {
+        if (categoryId == -1) {
+            return service.getAnimals();
+        }
         return service.getAnimals(categoryId);
     }
 

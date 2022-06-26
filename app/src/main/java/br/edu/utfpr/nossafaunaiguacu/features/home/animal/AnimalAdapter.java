@@ -88,7 +88,7 @@ class SectionViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(AnimalModel model, int position) {
         binding.title.setOnClickListener(v -> {
-            if (position == 0) {
+            if (position <= 5) {
                 binding.content.setVisibility(binding.content.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
             } else {
                 binding.img.setVisibility(binding.img.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);

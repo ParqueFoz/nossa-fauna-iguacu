@@ -62,7 +62,7 @@ class AnimalViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(AnimalModel model) {
         if (!LocalRepository.isKnown(model.getId())) {
-            binding.animalImage.setVisibility(View.GONE);
+            binding.favorite.setVisibility(View.GONE);
             binding.animalName.setText("Procure o QR CODE!");
             return;
         }
@@ -71,14 +71,18 @@ class AnimalViewHolder extends RecyclerView.ViewHolder {
             listener.onAnimalSelected(model);
         });
         favorite = LocalRepository.isFavorite(model.getId());
-        binding.animalImage.setOnClickListener(v -> {
+        binding.favorite.setOnClickListener(v -> {
             favorite = !favorite;
             LocalRepository.saveFavorite(model.getId(), favorite);
-            binding.animalImage.setImageDrawable(AppCompatResources.getDrawable(
-                    binding.animalImage.getContext(),
+            binding.favorite.setImageDrawable(AppCompatResources.getDrawable(
+                    binding.favorite.getContext(),
                     favorite ? R.drawable.ic_animal_fav_filled : R.drawable.ic_animal_fav_empty
             ));
         });
+        binding.favorite.setImageDrawable(AppCompatResources.getDrawable(
+                binding.favorite.getContext(),
+                favorite ? R.drawable.ic_animal_fav_filled : R.drawable.ic_animal_fav_empty
+        ));
         binding.animalName.setText(model.getName());
         Glide.with(binding.animalImage)
                 .load(model.getBackgroundImage())

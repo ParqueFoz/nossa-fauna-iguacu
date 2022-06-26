@@ -12,6 +12,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import br.edu.utfpr.nossafaunaiguacu.data.model.AnimalModel;
 import br.edu.utfpr.nossafaunaiguacu.databinding.FragmentAnimalsBinding;
 import br.edu.utfpr.nossafaunaiguacu.features.home.animal.AnimalActivity;
 
@@ -49,8 +54,17 @@ public class AnimalsFragment extends Fragment {
         viewModel = new ViewModelProvider(requireActivity()).get(AnimalsViewModel.class);
         viewModel.animals.observe(getViewLifecycleOwner(), animals -> {
             binding.progress.setVisibility(View.GONE);
-            binding.recyclerView.setAdapter(new AnimalsAdapter(animals, getAnimalClickListener()));
-            binding.recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2, RecyclerView.HORIZONTAL, false));
+            List<AnimalModel> list = new ArrayList<>();
+            if(animals.size() > 0) {
+                list.add(animals.get(0));
+                list.add(animals.get(0));
+                list.add(animals.get(0));
+                list.add(animals.get(0));
+                list.add(animals.get(0));
+                list.add(animals.get(0));
+            }
+            binding.recyclerView.setAdapter(new AnimalsAdapter(list, getAnimalClickListener()));
+            binding.recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2, RecyclerView.VERTICAL, false));
         });
     }
 

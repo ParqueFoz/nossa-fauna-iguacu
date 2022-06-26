@@ -86,10 +86,11 @@ class CategoryViewHolder extends RecyclerView.ViewHolder {
     private void setupViews(CategoryModel model) {
         binding.title.setText(model.getName());
         binding.animalBg.setClipToOutline(true);
-        Glide.with(binding.backgroundImg)
+        binding.backgroundImg.setClipToOutline(true);
+        Glide.with(binding.animalBg)
                 .load(model.getImageUrl())
                 .centerCrop()
-                .into(binding.backgroundImg);
+                .into(binding.animalBg);
     }
 
     private void setupListener(CategoryModel model) {

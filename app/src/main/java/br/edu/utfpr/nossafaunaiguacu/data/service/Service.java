@@ -18,4 +18,7 @@ public interface Service {
 
     @GET("animal/{id}")
     Single<AnimalModel> getAnimal(@Path("id") Integer id);
+
+    @GET("animais")
+    Single<List<AnimalModel>> getAnimals();
 }
